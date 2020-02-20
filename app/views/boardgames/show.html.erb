@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @boardgame.name %>
+</p>
+
+<p>
+  <strong>Rules:</strong>
+  <%= @boardgame.rules %>
+  <#%= link_to "", rails_blob_path(@boardgame.rules, disposition: 'attachment') %>
+</p>
+
+<% if @boardgame.box_image.attached? %>
+<p>
+  <strong>Board Pieces:</strong>
+  <%= image_tag @boardgame.box_image.variant(resize: "100x100") %>
+  <a href="<%= rails_blob_path(@boardgame.box_image, disposition: "attachment") %>" ><strong>Download</strong></a>
+</p>
+<% end %>
+
+<% if @boardgame.pieces_images.attached? %>
+<p>
+  <strong>Board Pieces:</strong>
+  <% @boardgame.pieces_images.each do |piece| %>
+    <%= image_tag piece.variant(resize: "100x100") %>
+    <a href="<%= rails_blob_path(piece, disposition: "attachment") %>" ><strong>Download</strong></a> |
+    <%= link_to 'Remove', delete_image_boardgame_path(@boardgame, piece), method: :delete, data: { confirm:'Are you sure?' } %>
+  <% end %>   
+</p>
+<% end %>
+
+<% if @boardgame.boards_images.attached? %>
+<p>
+  <strong>Board Components:</strong>
+  <% @boardgame.boards_images.each do |board| %>
+    <%= image_tag board.variant(resize: "100x100") %>
+    <a href="<%= rails_blob_path(board, disposition: "attachment") %>" ><strong>Download</strong></a> |
+    <%= link_to 'Remove', delete_image_boardgame_path(@boardgame, board), method: :delete, data: { confirm:'Are you sure?' } %>
+  <% end %>
+</p>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_boardgame_path(@boardgame) %> |
+<%= link_to 'Back', boardgames_path %>
