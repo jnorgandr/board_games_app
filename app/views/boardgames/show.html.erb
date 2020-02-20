@@ -14,7 +14,7 @@
 <% if @boardgame.box_image.attached? %>
 <p>
   <strong>Board Pieces:</strong>
-  <%= image_tag @boardgame.box_image.variant(resize: "100x100") %>
+  <%= image_tag @boardgame.box_image.variant(resize: "100x100"), style: "-webkit-filter: grayscale(100%)" %>
   <a href="<%= rails_blob_path(@boardgame.box_image, disposition: "attachment") %>" ><strong>Download</strong></a>
 </p>
 <% end %>
@@ -23,7 +23,7 @@
 <p>
   <strong>Board Pieces:</strong>
   <% @boardgame.pieces_images.each do |piece| %>
-    <%= image_tag piece.variant(resize: "100x100") %>
+    <%= image_tag piece.variant(resize: "100x100"), style: "-webkit-filter: grayscale(100%)" %>
     <a href="<%= rails_blob_path(piece, disposition: "attachment") %>" ><strong>Download</strong></a> |
     <%= link_to 'Remove', delete_image_boardgame_path(@boardgame, piece), method: :delete, data: { confirm:'Are you sure?' } %>
   <% end %>   
@@ -34,7 +34,7 @@
 <p>
   <strong>Board Components:</strong>
   <% @boardgame.boards_images.each do |board| %>
-    <%= image_tag board.variant(resize: "100x100") %>
+    <%= image_tag board.variant(resize: "100x100"), style: "-webkit-filter: grayscale(100%)" %>
     <a href="<%= rails_blob_path(board, disposition: "attachment") %>" ><strong>Download</strong></a> |
     <%= link_to 'Remove', delete_image_boardgame_path(@boardgame, board), method: :delete, data: { confirm:'Are you sure?' } %>
   <% end %>
