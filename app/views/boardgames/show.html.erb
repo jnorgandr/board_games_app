@@ -8,7 +8,7 @@
 <p>
   <strong>Rules:</strong>
   <%= @boardgame.rules %>
-  <#%= link_to "", rails_blob_path(@boardgame.rules, disposition: 'attachment') %>
+  <a href="<%= rails_blob_path(@boardgame.rules_pdf, disposition: "attachment") %>" ><strong>Download as PDF</strong></a>
 </p>
 
 <% if @boardgame.box_image.attached? %>
